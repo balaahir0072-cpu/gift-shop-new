@@ -56,6 +56,57 @@ type Product = {
 type CartItem = { product: Product; quantity: number; variant: string };
 type DeliveryMode = 'pickup' | 'delivery';
 
+type GiftImage = {
+  name: string;
+  image: string;
+  desc: string;
+};
+
+const giftImages: GiftImage[] = [
+  {
+    name: 'The Sunlit Desk Set',
+    image: 'https://images.unsplash.com/photo-1511108690759-009c4e38c3d6?auto=format&fit=crop&w=1200&q=85',
+    desc: 'A small ritual for big thoughts — linen-bound notebook, brass pencil, and page flags in a warm belly band.',
+  },
+  {
+    name: 'Moss & Milk Mug',
+    image: 'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=85',
+    desc: 'Hand-thrown stoneware with a thumb-sized dimple, made for slow mornings and second cups.',
+  },
+  {
+    name: 'Tiny Joys Matchbook',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85',
+    desc: 'A pocket-sized stack of 24 prompts for noticing the good stuff, one day at a time.',
+  },
+  {
+    name: 'The Weekday Bouquet',
+    image: 'https://images.unsplash.com/photo-1526047932273-0218a1a1d8b9?auto=format&fit=crop&w=1200&q=85',
+    desc: 'A cheerful bundle of illustrated cards, gift tags, and one very good envelope.',
+  },
+  {
+    name: 'Quiet Hours Candle',
+    image: 'https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1200&q=85',
+    desc: 'Cedar, black tea, and a soft trace of citrus — for when the group chat is too loud.',
+  },
+  {
+    name: 'Soft Landing Socks',
+    image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=85',
+    desc: 'Ridiculously soft cotton socks in a signature cinnamon stripe, great for care packages.',
+  },
+  {
+    name: 'Good Words Letterpress Set',
+    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=85',
+    desc: 'Eight heavyweight note cards with enough breathing room for what matters.',
+  },
+  {
+    name: 'The New Neighbor Box',
+    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=85',
+    desc: 'A welcome-home trio — candle, matchbook, and letterpress cards — ready to walk next door.',
+  },
+];
+
+const giftImageMap = new Map(giftImages.map((gift) => [gift.name, gift.image]));
+
 const image = (_query: string, index = 1) => {
   const imageIds = [
     'photo-1544816155-12df9643f363',
@@ -81,7 +132,7 @@ const products: Product[] = [
     price: 34,
     tag: 'Bestseller',
     desc: 'A small ritual for big thoughts: a linen-bound notebook, brass pencil, and page flags in a warm little belly band.',
-    image: image('linen notebook stationery desk', 11),
+    image: giftImageMap.get('The Sunlit Desk Set') ?? image('linen notebook stationery desk', 11),
     colors: ['Saffron', 'Rosewood', 'Moss'],
     rating: 4.9,
     reviews: 84,
@@ -95,7 +146,7 @@ const products: Product[] = [
     price: 28,
     tag: 'New in',
     desc: 'Hand-thrown stoneware with a thumb-sized dimple made for slow mornings and second cups.',
-    image: image('ceramic mug table still life', 22),
+    image: giftImageMap.get('Moss & Milk Mug') ?? image('ceramic mug table still life', 22),
     colors: ['Moss', 'Oat', 'Cherry'],
     rating: 4.8,
     reviews: 31,
@@ -109,7 +160,7 @@ const products: Product[] = [
     price: 12,
     tag: 'Under $15',
     desc: 'A pocket-sized stack of 24 prompts for noticing the good stuff, one ordinary day at a time.',
-    image: image('colorful matchbook paper art', 31),
+    image: giftImageMap.get('Tiny Joys Matchbook') ?? image('colorful matchbook paper art', 31),
     colors: ['Tomato', 'Butter'],
     rating: 4.7,
     reviews: 19,
@@ -123,7 +174,7 @@ const products: Product[] = [
     price: 19,
     oldPrice: 24,
     desc: 'A cheerful bundle of illustrated cards, gift tags, and one very good envelope for no particular reason.',
-    image: image('colorful paper cards flowers', 42),
+    image: giftImageMap.get('The Weekday Bouquet') ?? image('colorful paper cards flowers', 42),
     colors: ['Mixed'],
     rating: 4.9,
     reviews: 57,
@@ -137,7 +188,7 @@ const products: Product[] = [
     price: 32,
     tag: 'Staff pick',
     desc: 'Cedar, black tea, and a soft trace of citrus. A candle for when the group chat is too loud.',
-    image: image('amber candle interior still life', 53),
+    image: giftImageMap.get('Quiet Hours Candle') ?? image('amber candle interior still life', 53),
     colors: ['Tea & Cedar'],
     rating: 4.8,
     reviews: 43,
@@ -151,7 +202,7 @@ const products: Product[] = [
     price: 16,
     tag: 'Giftable',
     desc: 'Ridiculously soft cotton socks in our signature cinnamon stripe. They fit in every kind of care package.',
-    image: image('colorful socks cozy gift', 64),
+    image: giftImageMap.get('Soft Landing Socks') ?? image('colorful socks cozy gift', 64),
     colors: ['Cinnamon', 'Poppy'],
     rating: 4.6,
     reviews: 28,
@@ -165,7 +216,7 @@ const products: Product[] = [
     price: 26,
     tag: 'Made nearby',
     desc: 'Eight heavyweight note cards with enough breathing room for the things that matter.',
-    image: image('letterpress cards paper texture', 75),
+    image: giftImageMap.get('Good Words Letterpress Set') ?? image('letterpress cards paper texture', 75),
     colors: ['Parchment', 'Blush'],
     rating: 5,
     reviews: 61,
@@ -180,7 +231,7 @@ const products: Product[] = [
     oldPrice: 67,
     tag: 'Bundle & save',
     desc: 'A welcome-home trio: candle, matchbook, and letterpress cards, tied up ready to walk next door.',
-    image: image('gift box ribbon stationery', 86),
+    image: giftImageMap.get('The New Neighbor Box') ?? image('gift box ribbon stationery', 86),
     colors: ['As shown'],
     rating: 4.9,
     reviews: 22,
@@ -205,14 +256,14 @@ function App() {
   const [toast, setToast] = useState('');
 
   useEffect(() => {
-    document.title = 'Paper & Parcel — thoughtful things, close to home';
+    document.title = 'Buntu Tintu Shoppee — thoughtful things, close to home';
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement('meta');
       meta.setAttribute('name', 'description');
       document.head.appendChild(meta);
     }
-    meta.setAttribute('content', 'Paper & Parcel is a neighborhood gift and stationery shop for sending a little more love.');
+    meta.setAttribute('content', 'Buntu Tintu Shoppee is a neighborhood gift and stationery shop for sending a little more love.');
     const existingJsonLd = document.getElementById('product-json-ld');
     if (!existingJsonLd) {
       const script = document.createElement('script');
@@ -221,7 +272,7 @@ function App() {
       script.textContent = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Store',
-        name: 'Paper & Parcel',
+        name: 'Buntu Tintu Shoppee',
         description: 'Neighborhood gifts, stationery, and tiny reasons to celebrate.',
         url: window.location.origin,
         priceRange: '$$',
@@ -310,12 +361,6 @@ function StoreShell(props: ShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="storefront">
-      <div className="announcement" role="status">
-        <Sparkles size={15} aria-hidden="true" />
-        <span>Free local delivery over $45</span>
-        <span className="announcement-dot" />
-        <span>Open until 7 tonight</span>
-      </div>
       <Header
         cartCount={props.cartCount}
         wishlistCount={props.wishlist.length}
@@ -338,7 +383,7 @@ function StoreShell(props: ShellProps) {
       </main>
       <Footer />
       <CartDrawer {...props} />
-      <a className="whatsapp-fab" href="https://wa.me/15550147863" target="_blank" rel="noreferrer" aria-label="Chat with Paper and Parcel on WhatsApp" data-testid="link-whatsapp">
+      <a className="whatsapp-fab" href="https://wa.me/15550147863" target="_blank" rel="noreferrer" aria-label="Chat with Buntu Tintu Shoppee on WhatsApp" data-testid="link-whatsapp">
         <MessageCircle size={21} aria-hidden="true" />
         <span>Need a hand?</span>
       </a>
@@ -370,7 +415,7 @@ function Header({ cartCount, wishlistCount, menuOpen, setMenuOpen, setCartOpen }
         </button>
         <Link href="/" className="wordmark" data-testid="link-home">
           <span className="wordmark-mark"><span /><span /><span /></span>
-          <span>Paper <i>&</i> Parcel</span>
+          <span>Buntu <i>Tintu</i> Shoppee</span>
         </Link>
         <nav className={`desktop-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
           <Link href="/shop" data-testid="link-shop">Shop all</Link>
@@ -405,9 +450,9 @@ function Header({ cartCount, wishlistCount, menuOpen, setMenuOpen, setCartOpen }
 function HomePage({ addToCart, wishlist, toggleWishlist, setDeliveryMode, deliveryMode }: ShellProps) {
   const [promo, setPromo] = useState(0);
   const promos = [
-    { kicker: 'THE GIFT EDIT', title: 'For the friend who makes ordinary days better.', copy: 'Small, beautiful ways to say: I saw this and thought of you.', cta: 'Shop thoughtful gifts', image: image('woman wrapping gift paper warm', 101), tone: 'promo-coral' },
+    { kicker: 'RIGHT AROUND THE CORNER', title: 'Pick up something lovely on your way home.', copy: 'Order by 5pm for same-day pickup at our Franklin Street shop.', cta: 'Find the shop', image: image('neighborhood shop storefront flowers', 103), tone: 'promo-yellow' },
     { kicker: 'A LITTLE EXTRA', title: 'Your desk called. It wants better paper.', copy: 'Notebooks, cards, and tiny rituals for the next good idea.', cta: 'Browse stationery', image: image('colorful desk stationery flatlay', 102), tone: 'promo-yellow' },
-    { kicker: 'RIGHT AROUND THE CORNER', title: 'Pick up something lovely on your way home.', copy: 'Order by 5pm for same-day pickup at our Franklin Street shop.', cta: 'Find the shop', image: image('neighborhood shop storefront flowers', 103), tone: 'promo-green' },
+    { kicker: 'THE GIFT EDIT', title: 'For the friend who makes ordinary days better.', copy: 'Small, beautiful ways to say: I saw this and thought of you.', cta: 'Shop thoughtful gifts', image: image('woman wrapping gift paper warm', 101), tone: 'promo-yellow' },
   ];
   const current = promos[promo];
   return (
@@ -421,7 +466,7 @@ function HomePage({ addToCart, wishlist, toggleWishlist, setDeliveryMode, delive
           <div className="hero-notes"><span><BadgeCheck size={16} /> Wrapped with care</span><span><Store size={16} /> Local pickup</span></div>
         </div>
         <div className="hero-image-wrap">
-          <img src={current.image} alt="A warmly wrapped Paper and Parcel gift on a shop counter" />
+          <img src={current.image} alt="A warmly wrapped gift on a shop counter" />
           <span className="hero-sticker">good<br />things<br /><i>inside</i></span>
         </div>
         <div className="promo-controls">
@@ -434,7 +479,7 @@ function HomePage({ addToCart, wishlist, toggleWishlist, setDeliveryMode, delive
       <section className="section intro-section">
         <div className="section-kicker"><span className="rule" /> A neighborhood habit <span className="rule" /></div>
         <h2>Come in for one card.<br /><em>Leave with a little story.</em></h2>
-        <p className="section-intro">Paper & Parcel is a corner shop for the in-between moments: new homes, old friends, desk days, dinner parties, and the just-because of it all.</p>
+        <p className="section-intro">Buntu Tintu Shoppee is a corner shop for the in-between moments: new homes, old friends, desk days, dinner parties, and the just-because of it all.</p>
       </section>
 
       <section className="category-section section-wide">
@@ -548,12 +593,12 @@ function WishlistPage({ addToCart, wishlist, toggleWishlist }: ShellProps) {
 }
 
 function AboutPage() {
-  return <div className="simple-page"><section className="about-hero section-wide"><div><p className="eyebrow">SINCE 2018 / FRANKLIN STREET</p><h1>A small shop<br />with a <em>big soft spot</em><br />for people.</h1></div><img src={image('cozy independent gift shop interior', 410)} alt="The sunny interior of the Paper and Parcel shop" /></section><section className="section about-copy"><div><p className="eyebrow">WHY WE'RE HERE</p><h2>We believe a good gift is a tiny act of attention.</h2></div><div><p>Paper & Parcel started with a folding table, a box of cards, and a belief that the best shops feel a little like a friend’s kitchen. We find useful, beautiful, sometimes funny things made by people who care about the details.</p><p>Come by the shop in the afternoon for a browse, a wrapping lesson, or an opinion on whether your sister already owns too many mugs. (She doesn’t.)</p><Link href="/contact" className="text-link" data-testid="link-about-contact">Come say hello <ArrowRight size={16} /></Link></div></section><section className="locator-section section-wide"><div className="locator-card"><p className="eyebrow">COME FIND US</p><h2>Franklin Street, just past the good bakery.</h2><p>18 Franklin Street<br />Brooklyn, NY 11222</p><div className="store-hours"><span><Clock size={16} /> Mon–Sat, 10–7</span><span><Clock size={16} /> Sun, 11–5</span></div><a className="button button-light" href="https://maps.google.com/?q=18+Franklin+Street+Brooklyn" target="_blank" rel="noreferrer" data-testid="link-open-map">Open in maps <MapPin size={16} /></a></div><div className="map-art"><div className="map-pin"><MapPin size={22} /></div><span>FRANKLIN ST.</span><span>CARROLL GARDENS</span><span>THE BAKERY →</span></div></section></div>;
+  return <div className="simple-page"><section className="about-hero section-wide"><div><p className="eyebrow">SINCE 2018 / FRANKLIN STREET</p><h1>A small shop<br />with a <em>big soft spot</em><br />for people.</h1></div><img src={image('cozy independent gift shop interior', 410)} alt="The sunny interior of the Buntu Tintu Shoppee store" /></section><section className="section about-copy"><div><p className="eyebrow">WHY WE'RE HERE</p><h2>We believe a good gift is a tiny act of attention.</h2></div><div><p>Buntu Tintu Shoppee started with a folding table, a box of cards, and a belief that the best shops feel a little like a friend’s kitchen. We find useful, beautiful, sometimes funny things made by people who care about the details.</p><p>Come by the shop in the afternoon for a browse, a wrapping lesson, or an opinion on whether your sister already owns too many mugs. (She doesn’t.)</p><Link href="/contact" className="text-link" data-testid="link-about-contact">Come say hello <ArrowRight size={16} /></Link></div></section><section className="locator-section section-wide"><div className="locator-card"><p className="eyebrow">COME FIND US</p><h2>Franklin Street, just past the good bakery.</h2><p>18 Franklin Street<br />Brooklyn, NY 11222</p><div className="store-hours"><span><Clock size={16} /> Mon–Sat, 10–7</span><span><Clock size={16} /> Sun, 11–5</span></div><a className="button button-light" href="https://maps.google.com/?q=18+Franklin+Street+Brooklyn" target="_blank" rel="noreferrer" data-testid="link-open-map">Open in maps <MapPin size={16} /></a></div><div className="map-art"><div className="map-pin"><MapPin size={22} /></div><span>FRANKLIN ST.</span><span>CARROLL GARDENS</span><span>THE BAKERY →</span></div></section></div>;
 }
 
 function ContactPage({ setToast }: { setToast: (message: string) => void }) {
   const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setToast('Message received — we’ll write back soon.'); (event.currentTarget as HTMLFormElement).reset(); };
-  return <div className="section-wide simple-page contact-page"><div className="page-heading"><p className="eyebrow">WE'RE ALL EARS</p><h1>Talk to a real<br /><em>nice person.</em></h1><p>Questions about a gift, a pickup, or whether that card is too much? (It probably isn’t.)</p></div><div className="contact-layout"><form className="contact-form" onSubmit={submit}><label>Your name<input required name="name" placeholder="The person behind the message" data-testid="input-contact-name" /></label><label>Email address<input required type="email" name="email" placeholder="you@example.com" data-testid="input-contact-email" /></label><label>What can we help with?<textarea required name="message" rows={5} placeholder="Tell us the good stuff..." data-testid="input-contact-message" /></label><button className="button button-dark" type="submit" data-testid="button-contact-submit">Send the note <Send size={16} /></button></form><div className="contact-details"><div><Phone size={19} /><span><b>Call the shop</b><a href="tel:+15550147863" data-testid="link-phone">(555) 014-7863</a></span></div><div><Mail size={19} /><span><b>Email us</b><a href="mailto:hello@paperandparcel.shop" data-testid="link-email">hello@paperandparcel.shop</a></span></div><div><MessageCircle size={19} /><span><b>WhatsApp</b><a href="https://wa.me/15550147863" target="_blank" rel="noreferrer" data-testid="link-contact-whatsapp">Start a chat</a></span></div><div><CircleHelp size={19} /><span><b>Usually asked</b><Link href="/return-gifts" data-testid="link-contact-returns">Return-gift information</Link></span></div></div></div></div>;
+  return <div className="section-wide simple-page contact-page"><div className="page-heading"><p className="eyebrow">WE'RE ALL EARS</p><h1>Talk to a real<br /><em>nice person.</em></h1><p>Questions about a gift, a pickup, or whether that card is too much? (It probably isn’t.)</p></div><div className="contact-layout"><form className="contact-form" onSubmit={submit}><label>Your name<input required name="name" placeholder="The person behind the message" data-testid="input-contact-name" /></label><label>Email address<input required type="email" name="email" placeholder="you@example.com" data-testid="input-contact-email" /></label><label>What can we help with?<textarea required name="message" rows={5} placeholder="Tell us the good stuff..." data-testid="input-contact-message" /></label><button className="button button-dark" type="submit" data-testid="button-contact-submit">Send the note <Send size={16} /></button></form><div className="contact-details"><div><Phone size={19} /><span><b>Call the shop</b><a href="tel:+15550147863" data-testid="link-phone">(555) 014-7863</a></span></div><div><Mail size={19} /><span><b>Email us</b><a href="mailto:hello@buntatintushoppee.com" data-testid="link-email">hello@buntatintushoppee.com</a></span></div><div><MessageCircle size={19} /><span><b>WhatsApp</b><a href="https://wa.me/15550147863" target="_blank" rel="noreferrer" data-testid="link-contact-whatsapp">Start a chat</a></span></div><div><CircleHelp size={19} /><span><b>Usually asked</b><Link href="/return-gifts" data-testid="link-contact-returns">Return-gift information</Link></span></div></div></div></div>;
 }
 
 function ReturnGiftsPage({ setToast }: { setToast: (message: string) => void }) {
@@ -576,7 +621,7 @@ function Newsletter() {
 }
 
 function Footer() {
-  return <footer className="site-footer"><div className="footer-top section-wide"><div className="footer-brand"><Link href="/" className="wordmark" data-testid="link-footer-home"><span className="wordmark-mark"><span /><span /><span /></span><span>Paper <i>&</i> Parcel</span></Link><p>A neighborhood gift shop for the people you love, the places you’re going, and the little things worth noticing.</p><a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Paper and Parcel on Instagram" data-testid="link-instagram"><Instagram size={19} /> @paperandparcel</a></div><div className="footer-links"><div><p className="eyebrow">Explore</p><Link href="/shop" data-testid="link-footer-shop">Shop all</Link><Link href="/about" data-testid="link-footer-about">Our story</Link><Link href="/return-gifts" data-testid="link-footer-return-gifts">Return gifts</Link></div><div><p className="eyebrow">Need us?</p><Link href="/contact" data-testid="link-footer-contact">Contact</Link><a href="mailto:hello@paperandparcel.shop" data-testid="link-footer-email">Email the shop</a><a href="https://wa.me/15550147863" target="_blank" rel="noreferrer" data-testid="link-footer-whatsapp">WhatsApp</a></div><div><p className="eyebrow">Visit</p><p>18 Franklin Street<br />Brooklyn, NY 11222</p><p>Mon–Sat 10–7<br />Sun 11–5</p></div></div></div><div className="footer-bottom section-wide"><span>© 2025 Paper & Parcel</span><span>Made for sending more love around.</span><span>Pickup · Delivery · Good advice</span></div></footer>;
+  return <footer className="site-footer"><div className="footer-top section-wide"><div className="footer-brand"><Link href="/" className="wordmark" data-testid="link-footer-home"><span className="wordmark-mark"><span /><span /><span /></span><span>Buntu <i>Tintu</i> Shoppee</span></Link><p>A neighborhood gift shop for the people you love, the places you’re going, and the little things worth noticing.</p><a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Buntu Tintu Shoppee on Instagram" data-testid="link-instagram"><Instagram size={19} /> @buntatintushoppee</a></div><div className="footer-links"><div><p className="eyebrow">Explore</p><Link href="/shop" data-testid="link-footer-shop">Shop all</Link><Link href="/about" data-testid="link-footer-about">Our story</Link><Link href="/return-gifts" data-testid="link-footer-return-gifts">Return gifts</Link></div><div><p className="eyebrow">Need us?</p><Link href="/contact" data-testid="link-footer-contact">Contact</Link><a href="mailto:hello@buntatintushoppee.com" data-testid="link-footer-email">Email the shop</a><a href="https://wa.me/15550147863" target="_blank" rel="noreferrer" data-testid="link-footer-whatsapp">WhatsApp</a></div><div><p className="eyebrow">Visit</p><p>18 Franklin Street<br />Brooklyn, NY 11222</p><p>Mon–Sat 10–7<br />Sun 11–5</p></div></div></div><div className="footer-bottom section-wide"><span>© 2025 Buntu Tintu Shoppee</span><span>Made for sending more love around.</span><span>Pickup · Delivery · Good advice</span></div></footer>;
 }
 
 function CartDrawer({ cart, cartCount, cartTotal, cartOpen, setCartOpen, changeQuantity, deliveryMode }: ShellProps) {

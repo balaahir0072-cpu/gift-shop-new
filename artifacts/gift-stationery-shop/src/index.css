@@ -414,14 +414,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .header-count { min-width: 15px; height: 15px; padding: 1px 4px; position: absolute; top: -7px; right: -9px; display: grid; place-items: center; border-radius: 20px; background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); font: 9px var(--app-font-mono); }
 .mobile-menu-button { display: none; }
 .icon-button { display: inline-grid; place-items: center; padding: 8px; border: 0; color: hsl(var(--primary)); background: transparent; cursor: pointer; }
-.hero { width: min(1240px, calc(100% - 40px)); min-height: 530px; margin: 26px auto 0; position: relative; display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; background: hsl(var(--accent)); }
-.promo-coral { background: hsl(15 65% 55%); }
-.promo-yellow { background: hsl(42 87% 65%); }
-.promo-green { background: hsl(161 26% 37%); color: hsl(39 44% 97%); }
-.hero-copy { align-self: center; z-index: 2; padding: 72px 50px 72px 70px; }
+.hero { width: min(1240px, calc(100% - 40px)); min-height: 530px; margin: 26px auto 0; position: relative; display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; background: hsl(var(--accent)); border-radius: 30px; box-shadow: 0 24px 48px rgba(26, 24, 31, 0.12); }
+.promo-coral { background: linear-gradient(135deg, #f9e2cf 0%, #f0b18f 38%, #d98a68 100%); }
+.promo-yellow { background: linear-gradient(135deg, #f7e9b2 0%, #f1d48c 30%, #e6b96a 100%); }
+.promo-green { background: linear-gradient(135deg, #7e9c8b 0%, #547a6a 36%, #375b4f 100%); color: hsl(39 44% 97%); }
+.hero-copy { align-self: center; z-index: 2; padding: 72px 50px 72px 70px; position: relative; }
 .eyebrow { margin: 0 0 12px; color: hsl(var(--primary)); font: 500 10px var(--app-font-mono); letter-spacing: .13em; text-transform: uppercase; }
 .promo-green .eyebrow { color: hsl(var(--secondary)); }
-.hero h1 { max-width: 560px; margin: 0; color: hsl(var(--primary)); font: 600 clamp(42px, 6vw, 76px)/.98 var(--app-font-serif); letter-spacing: -.06em; }
+.hero h1 { max-width: 560px; margin: 0; color: hsl(var(--primary)); font: 600 clamp(42px, 6vw, 76px)/.98 var(--app-font-serif); letter-spacing: -.06em; text-shadow: 0 10px 22px rgba(60, 32, 22, 0.14); }
 .promo-green h1 { color: hsl(var(--background)); }
 .hero-lede { max-width: 390px; margin: 26px 0 30px; color: hsl(var(--primary) / .82); font-size: 16px; line-height: 1.6; }
 .promo-green .hero-lede { color: hsl(var(--background) / .78); }
@@ -434,11 +434,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-notes { display: flex; gap: 19px; margin-top: 32px; color: hsl(var(--primary) / .75); font-size: 11px; }
 .hero-notes span { display: inline-flex; align-items: center; gap: 6px; }
 .promo-green .hero-notes { color: hsl(var(--background) / .75); }
-.hero-image-wrap { min-height: 530px; position: relative; overflow: hidden; }
-.hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; opacity: .85; }
+.hero-image-wrap { min-height: 530px; position: relative; overflow: visible; display: flex; align-items: flex-end; justify-content: flex-end; padding-right: 18px; }
+.hero-image-wrap img { width: calc(100% - 25px); height: calc(100% - 24px); object-fit: cover; mix-blend-mode: multiply; opacity: .9; border-radius: 26px; box-shadow: 0 30px 55px rgba(58, 31, 18, 0.18); transform: translateY(-18px); }
 .promo-yellow .hero-image-wrap img { mix-blend-mode: normal; }
 .promo-green .hero-image-wrap img { mix-blend-mode: screen; opacity: .55; }
-.hero-sticker { position: absolute; right: 8%; bottom: 11%; width: 104px; height: 104px; display: grid; place-content: center; text-align: center; transform: rotate(9deg); border-radius: 50%; background: hsl(var(--secondary)); color: hsl(var(--primary)); font: 700 13px/1.02 var(--app-font-mono); text-transform: uppercase; }
+.hero-sticker { position: absolute; right: 8%; bottom: 11%; width: 104px; height: 104px; display: grid; place-content: center; text-align: center; transform: rotate(9deg); border-radius: 50%; background: hsl(var(--secondary)); color: hsl(var(--primary)); font: 700 13px/1.02 var(--app-font-mono); text-transform: uppercase; box-shadow: 0 14px 28px rgba(61, 38, 22, 0.18); }
 .hero-sticker i { color: hsl(var(--accent)); font-style: normal; }
 .promo-controls { position: absolute; bottom: 24px; left: 50px; z-index: 3; display: flex; align-items: center; gap: 12px; color: hsl(var(--primary)); font: 10px var(--app-font-mono); }
 .promo-green .promo-controls { color: hsl(var(--background)); }
