@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Paper & Parcel"
+description = "A warm, festive e-commerce storefront for a gift and stationery shop, with product discovery, bulk return-gift inquiries, wishlist, cart, and checkout flows using replaceable placeholder content."
+version = "1.0.0"
+id = "artifacts/gift-stationery-shop"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20050
+
+[services.development]
+run = "pnpm --filter @workspace/gift-stationery-shop run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/gift-stationery-shop", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/gift-stationery-shop/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20050"
+BASE_PATH = "/"
