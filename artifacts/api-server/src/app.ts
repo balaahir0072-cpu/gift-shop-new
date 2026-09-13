@@ -29,6 +29,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (_req, res) => {
+  res.json({ status: "ok", message: "Gift Shop API is running" });
+});
+
 app.use("/api", router);
 
 export default app;
